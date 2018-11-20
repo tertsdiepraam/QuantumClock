@@ -9,35 +9,14 @@ window.onload = () => {
 
 function update_time() {
     let current_time = new Date();
-    let months = target_date.getMonth() - current_time.getMonth();
-    let days = target_date.getDate() - current_time.getDate();
-    let month_text = "";
-    let day_text = "";
-    if (months > 0) {
-        if (months > 1) {
-            month_text = months + " months ";
-        } else {
-            month_text = months + " month ";
-        }
+    let diff = target_date - current_time;
+    let days = Math.floor(diff / 1000 / 60 / (60 * 24));
+    let day_text;
+    if (days == 0) {
+        day_text = "day"
+    } else {
+        day_text = "days"
     }
-    if (days > 0) {
-        if (days > 1) {
-            day_text = days + " days ";
-        } else {
-            day_text = days + " day ";
-        }
-    }
-    let [hours, minutes, seconds] = [0,0,0];
-    seconds += target_date.getSeconds() - current_time.getSeconds()
-    if (seconds < 0) {
-        seconds += 60;
-        minutes -= 1;
-    }
-    minutes += target_date.getMinutes() - current_time.getMinutes();
-    if (minutes < 0) {
-        minutes += 60;
-        hours -= 1;
-    }
-    hours   += target_date.getHours() - current_time.getHours();
-    clock_text.innerHTML = month_text + day_text + hours + ":" + minutes + ":" + seconds;
+    let diffdate = new Date(diff);
+    clock_text.innerHTML = days + " " + day_text + "<br>" + diffdate.getHours() + ":" + diffdate.getMinutes() + ":" + diffdate.getSeconds();
 }
