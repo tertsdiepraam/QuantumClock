@@ -1,5 +1,5 @@
 var clock_text;
-var target_date = new Date("December 20, 2018 16:00:00");
+var target_date = new Date("December 20, 2018 15:00:00");
 
 window.onload = () => {
     clock_text = document.getElementById("clock");
@@ -19,14 +19,7 @@ function pad(text) {
 function update_time() {
     let current_time = new Date();
     let diff = target_date - current_time;
-    let days = Math.floor(diff / 1000 / 60 / (60 * 24));
-    let day_text;
-    if (days == 0) {
-        day_text = "day"
-    } else {
-        day_text = "days"
-    }
     let diffdate = new Date(diff);
 
-    clock_text.innerHTML = days + " " + day_text + "<br>" + diffdate.getHours() + ":" + pad(diffdate.getMinutes()) + ":" + pad(diffdate.getSeconds());
+    clock_text.innerHTML =  diffdate.getHours() + ":" + pad(diffdate.getMinutes()) + ":" + pad(diffdate.getSeconds());
 }
