@@ -1,10 +1,24 @@
 <html>
     <head>
-        <script src="doomsday.js"></script>
-        <meta charset="UTF-8"> 
+        <meta charset="UTF-8">
     </head>
     <body bgcolor="black" style="text-align: center; color: white">
-        <p style="font-size: 2em">The next Quantum Physics test will be in</p>
-        <p id="clock" style="font-size: 12em; margin:0px">Clock</p>
+        <p style="font-size: 2em">Choose a name for the countdown and a date and time:</p>
+            <label for="name">Name:</label><br>
+            <input id="name" type="text"><br>
+            <label for="date">Date:</label><br>
+            <input id="date" type="date"><br>
+            <label for="time">Time:</label><br>
+            <input id="time" type="time"><br>
+            <button onclick="submit()">Start Countdown</button>
+        </form>
     </body>
+
+    <script>
+     function submit() {
+         var name = document.getElementById("name").value;
+         var date = document.getElementById("date").value + " " + document.getElementById("time").value;
+         window.open(`/clock.html?name=${name}&date=${date}`);
+     }
+    </script>
 </html>
